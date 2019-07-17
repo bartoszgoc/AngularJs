@@ -4,6 +4,7 @@
 <head>
     <title>Zabawa z json</title>
     <title>AngularJs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 
 <body data-ng-controller="defaultCtrl">
@@ -25,11 +26,11 @@
         </div>
         <pre data-ng-show="fileData">
             Nazwa: {{fileData.data.nazwa}}
-            Autor: {{file.data.autor | uppercase}}
-            Data: {{file.data.data | date}}         
-            URL: {{fileData.config.URL}}
+            Autor: {{fileData.data.autor | uppercase}}
+            Data: {{fileData.data.data | date}}         
+            URL: {{fileData.config.url}}
         </pre>
-        <pre data-ng-show="fileData">{{fileData|json}}</pre>
+        <pre data-ng-show="fileData">{{fileData | json}}</pre>
     </div>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

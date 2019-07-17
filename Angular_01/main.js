@@ -8,7 +8,7 @@ app.controller("defaultCtrl", function ($scope, FileDataService){
     ];
     $scope.getFileData = function (file) {
         FileDataService.getFileData(file).then(function (result){
-            $scope.FileData = result;
+            $scope.fileData = result;
         }, function (result){
             alert("Wystapil blad.");
         });
@@ -20,7 +20,9 @@ app.factory('FileDataService', ['$http', '$q', function($http){
     var factory = {
         getFileData: function (file) {
             console.log(file);
+            console.log("hehe");
             var data =$http({method: 'GET', url: file.URL});
+            console.log(data);
             return data;
         }
     }
