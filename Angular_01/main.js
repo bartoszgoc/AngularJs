@@ -1,9 +1,28 @@
-angular.module('app', []).controller('Controller',
-    ['$scope', function ($scope) {
-        $scope.message = { sentence: 'swiecie!', jeden: 'jeden', dwa: 'dwa' };
-    }]);
+var app = angular.module('app', ['ngResource']);
 
-    angular.module('app', []).controller('Ctrl',
-    ['$scope', function ($scope) {
-        $scope.wiadomosc = { sentence: 'tralala!'};
-    }]);
+app.controller("defaultCtrl", function ($scope, FileDataService){
+    $scope.files = [
+        {name: 'Plik 1.', URL: 'plik-testowy-1.json'},
+        {name: 'Plik 2.', URL: 'plik-testowy-2.json'},
+        {name: 'Plik 3.', URL: 'plik-testowy-3.json'}
+    ];
+    $scope.getFileData = function (file) {
+        FileDataService.getFileData(file).then(function (result){
+            $scope.FileData = result;
+        }, function (result){
+            alert("Wystapil blad.");
+        });
+    };
+});
+
+app.$inject = ['$scope', 'FileDataSerivce'];
+app.factory('FileDataService', ['$http', '$q', function($http){
+    var factory = {
+        getFileData: function (file) {
+            console.log(file);
+            var data =$http({method: 'GET', url: file.URL});
+            return data;
+        }
+    }
+    return factory;
+}]);
